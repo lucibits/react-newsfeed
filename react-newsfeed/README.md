@@ -1,5 +1,5 @@
 This project has 2 versions:
-1. The repository one was created with [Create React App](https://github.com/facebook/create-react-app).
+1. The repository version was created with [Create React App](https://github.com/facebook/create-react-app).
 
 ## To run the app
 In the project directory, you can run:
@@ -11,7 +11,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 
-2. The zip one(that can also be open with this link) was created on an static html using the React CDN.
+2. The Live version can be found here: (https://lucibits.github.io/newsfeed.html#). Created on an static html using the React CDN.
 
 ## To run the app
 Simply open the index.html in the browser and the linked CDN would do the job.
