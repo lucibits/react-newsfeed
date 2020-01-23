@@ -26,6 +26,14 @@ h1 {
     margin: 0 auto;  
 }
 
+.categoriesCol {
+    max-width: 100%;
+}
+
+.feedCol {
+    max-width: 100%;
+}
+
 .cardsContainer {
     margin-bottom: 40px;
 }
@@ -41,8 +49,21 @@ h1 {
 }
 
 .title-container {
-    padding-left: 15px; 
-    color: rgb(180, 179, 179);
+    padding-left: 14px; 
+    font-size: 12px;
+}
+
+.title-container h1 {
+    margin: 0;
+}
+
+.latest:hover {
+    color: #dc3b42;
+    cursor: pointer;
+}
+
+.latest {
+    margin-bottom: 5px;
 }
 
 .activeTab {
@@ -113,20 +134,17 @@ h1 {
     padding-left: 8px;
 }
 
-.selected {
-    /* display: none; */
-}
-
 ul {
     list-style: none;
     padding: 0;
 }
 
 ul li {
+    position: relative;
     display: inline-block;
     color: #fff;
     background-color: #dc3b42;
-    padding: 5px 15px 8px 15px;
+    padding: 5px 25px 8px 25px;
     margin: 5px;
     border-radius: 50px;
     transition: all 0.3s;
@@ -138,6 +156,12 @@ ul a {
 
 ul li:hover{
     background-color: #a1282e;
+    cursor: pointer;
+}
+
+ul li span {
+    position: absolute;
+    right: 8px;
 }
 
 .categories h1 { 
@@ -226,10 +250,19 @@ ul li:hover{
         height: 70px;
     }
 
+    .categoriesCol {
+        max-width: 25%;
+    }
+    
+    .feedCol {
+        max-width: 75%;
+        min-width: 75%;
+        min-height: 100vh;
+    }
+
     .card {
         flex-direction: row;
         max-height: 260px;
-        margin: 15px 15px 15px 0;
     }
 
     .card__img {
@@ -242,6 +275,10 @@ ul li:hover{
 
     .card__body .date {
         margin: 0 0 10px 0;
+    }
+
+    .categories {
+        padding-left: 15px;
     }
 
     .categories__container {

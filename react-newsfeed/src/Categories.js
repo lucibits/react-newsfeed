@@ -15,22 +15,22 @@ class Categories extends Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
-    // categories
+    categories
     handleClick(event) {
         let index = event.target.value;
         let cat = this.state.categories[index];
-        // console.log(event, 'event', event.target);
         this.setState({
             selectedCategoryIndex : index
         });
         this.props.handleCategory(cat);
-        // let selected = document.getElementById('selected' + index);
-        // selected.style.display = 'block';
     }
 
     // Search bar
     handleInput(event) {
-        this.state.textInput = event.target.value;
+        this.setState({
+            textInput: event.target.value
+        });
+        // this.state.textInput = event.target.value;
     }
 
     handleSearch(event) {
@@ -38,37 +38,59 @@ class Categories extends Component {
     }
 
 
-  render() {
-    return (
-        <div className="categories">
-            <h1>Categories</h1>
-            <ul className="categories__container">
-                {this.state.categories.map((category, i) => {
-                    return (
-                        <li key={i} value={i} onClick={this.handleClick}>
-                            {category}
-                            <span 
-                                className="selected" 
-                                style={{
-                                    display: this.state.selectedCategoryIndex == i ?
-                                    'block': 'none'
-                                }}>
-                                    &#x2713;
-                            </span>
-                        </li>
-                    )
-                })}
-            </ul>
+    componentDidUpdate(prevProps) {
 
-            <div className="search-container">
-                <input type="text" placeholder="Search news.." name="search" onChange={this.handleInput}/>
-                <button type="submit" className="submit-btn" onClick={this.handleSearch}>
-                    <span>&#x2315;</span>
-                </button>
+        if(this.props === prevProps){
+            return;
+        }
+
+        // Clear search input
+        if(this.props.searchInput == null) {
+            document.getElementById("searchInput").value = '';
+            this.setState({
+                textInput : ""
+            });
+        } 
+
+        // Clear category
+        if (this.props.selectedCategory == null) {
+            this.setState({
+                selectedCategoryIndex : -1
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div className="categories">
+
+                <ul className="categories__container">
+                    {this.state.categories.map((category, i) => {
+                        return (
+                            <li key={i} value={i} onClick={this.handleClick}>
+                                <span
+                                    style={{
+                                        display: this.state.selectedCategoryIndex === i ?
+                                        'block': 'none',
+                                        
+                                    }}>
+                                    &#x2713;
+                                </span>
+                                {category}
+                            </li>
+                        )
+                    })}
+                </ul>
+
+                <div className="search-container">
+                    <input id="searchInput" type="text" placeholder="Search news.." name="search" onChange={this.handleInput}/>
+                    <button type="submit" className="submit-btn" onClick={this.handleSearch}>
+                        <span>&#x2315;</span>
+                    </button>
+                </div>
             </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default Categories;

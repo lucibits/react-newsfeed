@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import './Api.css';
-import Header from './Header.js';
-import Footer from './Footer.js';
-import Categories from './Categories.js';
 
 
-class App extends Component {
+class Feed extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -43,8 +39,27 @@ class App extends Component {
 
   
     componentDidMount() {
+        this.fetchLatestNews();
+    }
+
+    fetchLatestNews() {
         this.fetchNews(this.state.urlBase + this.state.urlTopHeadlines + this.state.urlSources + this.state.urlKey);
     }
+
+    componentDidUpdate(prevProps) {
+
+        if(this.props === prevProps){
+            return;
+        }
+
+        if(this.props.searchInput != null) {
+            this.handleSearch(this.props.searchInput);
+        } else if (this.props.selectedCategory != null) {
+            this.handleCategory(this.props.selectedCategory); 
+        } else {
+            this.fetchLatestNews();
+        }
+      }
 
     removeDuplicity(datas){
         return datas.filter((item, index,arr)=>{
@@ -72,49 +87,35 @@ class App extends Component {
           }
         )
     }
+
   
     render() {
-
         if (this.state.error) {
             return <div>Error: {this.state.error.message}</div>;
         } else if (!this.state.isLoaded) {
-            return <div>Loading...</div>;
+            return <div style={{padding: "15px"}}>Loading...</div>;
         } else {
             return (
-                <div className="wrapper">
-                    <Header />
-                    <main className="main">
-                        <Categories className="categories" handleCategory={this.handleCategory} handleSearch={this.handleSearch}/>
-                        <div className="cardsContainer"> 
-                            <div className="title-container">
-                                    <h1 className="activeTab">Latest news</h1>
-                            </div>
+                <div className="cardsContainer"> 
+                    {this.state.data.map((item, index) => (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" key={index}>
+                            <div className="card">
                             
-                            {this.state.data.map((item, index) => (
-                                <a href={item.url} target="_blank" key={index}>
-                                    <div className="card">
+                                <div className="card__img" style={{ backgroundImage: "url("+item.urlToImage+")" }}></div>
                                     
-                                        <div className="card__img" style={{ backgroundImage: "url("+item.urlToImage+")" }}></div>
-                                            
-                                        <div className="card__body">
-                                            <p className="date">{new Date(item.publishedAt).toLocaleDateString()}</p>
-                                            <h1>{item.title}</h1>
-                                            <p>{item.description}</p>
-                                        </div>  
-                                   
-                                    </div> 
-                                </a>              
-                            ))}
-                         
-                        </div>
-
-                    </main>
-                    <Footer />
-                </div>
-                
+                                <div className="card__body">
+                                    <p className="date">{new Date(item.publishedAt).toLocaleDateString()}</p>
+                                    <h1>{item.title}</h1>
+                                    <p>{item.description}</p>
+                                </div>  
+                            
+                            </div> 
+                        </a>              
+                    ))}
+                </div>               
             );
         }
     }
 }
 
-export default App
+export default Feed
