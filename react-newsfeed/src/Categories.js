@@ -30,11 +30,12 @@ class Categories extends Component {
         this.setState({
             textInput: event.target.value
         });
-        // this.state.textInput = event.target.value;
     }
 
     handleSearch(event) {
-        this.props.handleSearch(this.state.textInput)
+        if(this.state.textInput !== undefined && this.state.textInput.length > 0){
+            this.props.handleSearch(this.state.textInput)
+        }
     }
 
 
