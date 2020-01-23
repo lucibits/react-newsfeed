@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// NEWS API KEY GOES HERE
+const NEWS_API_KEY = "5b9005b25af8476e8361b0e0676518f6";
 
 class Feed extends Component {
     constructor(props) {
@@ -13,7 +15,7 @@ class Feed extends Component {
         urlSources: 'sources=google-news',
         urlCategory: 'category=',
         urlEverything: 'everything?q=',
-        urlKey: '&apiKey=5b9005b25af8476e8361b0e0676518f6'
+        urlKey: '&apiKey=' + NEWS_API_KEY
       };
 
       this.handleCategory = this.handleCategory.bind(this);

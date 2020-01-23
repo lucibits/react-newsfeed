@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has 2 versions:
+1. The repository one was created with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
+## To run the app
 In the project directory, you can run:
 
-### `yarn start`
-
+### `npm install`
+### `npm start`
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+2. The zip one(that can also be open with this link) was created on an static html using the React CDN.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## To run the app
+Simply open the index.html in the browser and the linked CDN would do the job.
 
-### `yarn build`
+## About the project
+This app was built in React, HTML5 & CSS3 and utilizes the News API (https://newsapi.org/docs) from Google where you get the latest news and can also filter your search by predetermined endpoints.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Architecture
+The app has an App Component that renders the whole page and acts as parent. For the main section I created a Feed component and a Categories component which filter acording to the sugested categories in the API documentation and keywords - note: the API returns repeted articles for these queries so i added a function to remove duplicity -. It also has a Header and Footer component like it would have if it was a real application, which, for this project I am keeping them very simple and rendering the necessary to fullfill the design. 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Design
+I took in mind a clean and simple news feed with a responsive layout and intuitive sections. I added some UX accesibility by adding a checks on the selected category, hover styles and transitions for the news cards and buttons as well as the thought on a simple colour scheme and shapes. For the responsive version, the categories sections transform into a carousel.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
