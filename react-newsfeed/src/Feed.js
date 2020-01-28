@@ -14,6 +14,7 @@ class Feed extends Component {
         urlTopHeadlines: 'top-headlines?',
         urlSources: 'sources=google-news',
         urlCategory: 'category=',
+        urlCountry: '&country=us',
         urlEverything: 'everything?q=',
         urlKey: '&apiKey=' + NEWS_API_KEY
       };
@@ -24,7 +25,7 @@ class Feed extends Component {
     }
 
     handleCategory(category) {
-        var url = this.state.urlBase + this.state.urlTopHeadlines + this.state.urlCategory + category + this.state.urlKey;
+        var url = this.state.urlBase + this.state.urlTopHeadlines + this.state.urlCategory + category + this.state.urlCountry + this.state.urlKey;
         this.setState({
             isLoaded: false
         });
@@ -32,7 +33,7 @@ class Feed extends Component {
     }
 
     handleSearch(input) {
-        var url = this.state.urlBase + this.state.urlEverything + input + this.state.urlKey;
+        var url = this.state.urlBase + this.state.urlEverything + input + this.state.urlCountry + this.state.urlKey;
         this.setState({
             isLoaded: false
         });
@@ -64,10 +65,12 @@ class Feed extends Component {
       }
 
     removeDuplicity(datas){
-        return datas.filter((item, index,arr)=>{
-        const c = arr.map(item=> item.title);
-        return index === c.indexOf(item.title)
-      })
+
+        const titles = datas.map(item => item.title);
+
+        return datas.filter((item, index, arr) => {
+            return index === titles.indexOf(item.title)
+        })
     }
 
     fetchNews(url){
